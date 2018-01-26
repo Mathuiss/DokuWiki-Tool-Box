@@ -9,16 +9,22 @@ namespace DokuWikiToolBox
         {
             foreach (DocObject doc in docObjects)
             {
-                string[] xml = doc.Lines.ToArray();
+                var nodeList = new List<XmlNode>();
+                GetNodes(doc, ref nodeList);
+            }
+        }
 
-                for (int i = 0; i < xml.Length; i++)
+        public void GetNodes(DocObject doc, ref List<XmlNode> nodeList)
+        {
+            string[] xml = doc.Lines.ToArray();
+
+            for (int i = 0; i < xml.Length; i++)
+            {
+                if (xml[i].Contains("<w:pPr"))
                 {
-                    if (xml[i].Contains("<w:pPr"))
+                    if (xml[i + 1].Contains("<w:pStyle"))
                     {
-                        if (xml[i + 1].Contains("<w:pStyle"))
-                        {
-                            Console.WriteLine(GetValue(xml[i + 1], "\""));
-                        }
+                        Console.WriteLine(GetValue(xml[i + 1], "\""));
                     }
                 }
             }
