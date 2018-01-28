@@ -27,7 +27,7 @@ namespace DokuWikiToolBox
                     var node = new XmlNode();
 
                     //Get type
-                    if (xml[i + 1].Contains("<w:pStyle"))
+                    if (xml[i + 1].Contains("<w:pStyle"))           //TODO: Test This
                     {
                         node.Type = GetType(xml[i + 1], "\"");
 
