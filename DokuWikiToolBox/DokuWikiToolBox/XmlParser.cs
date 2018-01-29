@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.IO;
 using System.Collections.Generic;
 
 namespace DokuWikiToolBox
@@ -8,10 +9,14 @@ namespace DokuWikiToolBox
     {
         public void WordToDokuwiki(List<DocObject> docObjects)
         {
+            int index = 1;
             foreach (DocObject doc in docObjects)
             {
                 var nodeList = new List<XmlNode>();
                 GetNodes(doc, ref nodeList);
+                var xmlTranslator = new XmlTranslator();
+                WriteNodes(xmlTranslator.TranslateNodes(nodeList), index);
+                index++;
             }
         }
 
@@ -27,8 +32,8 @@ namespace DokuWikiToolBox
                 {
                     var node = new XmlNode();
 
-                    //Get type
-                    if (xml[i + 1].Contains("<w:pStyle"))           //TODO: Test This
+                    //Get type H2
+                    if (xml[i + 1].Contains("<w:pStyle"))
                     {
                         node.Type = GetType(xml[i + 1], "\"");
 
@@ -42,6 +47,33 @@ namespace DokuWikiToolBox
                         if (xml[i].Contains("<w:t"))
                             node.Value = GetValue(xml[i], "<w:t");
                     }
+
+                    nodeList.Add(node);
+                }
+                else if (xml[i].Contains("<w:rPr"))
+                {
+                    var node = new XmlNode();
+
+                    //Get type H2
+                    if (xml[i + 1].Contains("<w:rFonts"))
+                    {
+                        node.Type = GetType(xml[i + 1], "\""); //" identifies a type string within xml
+
+                        //Fast forward to value
+                        try
+                        {
+                            while (!xml[i].Contains("<w:t"))
+                            {
+                                i++;                       
+                            }
+                        }
+                        catch { break; }
+
+                        if (xml[i].Contains("<w:t"))
+                            node.Value = GetValue(xml[i], "<w:t");
+                    }
+
+                    nodeList.Add(node);
                 }
             }
         }
@@ -78,12 +110,34 @@ namespace DokuWikiToolBox
             }
 
             if (first == 0 || last == 0)
-                throw new Exception("Unable to detect node. Missing char '<' or '>'"); //Show Exception Message
+                last = input.Length;
+                //throw new Exception("Unable to detect node. Missing char '<' or '>'"); //Show Exception Message
             
             input = input.Remove(last, input.Length - last); //Because it's a 0 based array
             input = input.Remove(0, first + 1); //+1 To Delete the '>' as well
 
             return input;
+        }
+
+        public void WriteNodes(XmlNode[] nodes, int index)
+        {
+            string[] values = new string[nodes.Length];
+
+            //Transfering the nodes vall
+            for (int i = 0; i < values.Length; i++)
+            {
+                values[i] = nodes[i].Value;
+            }
+
+            string outputFolder = "C:\\Users\\" + Environment.UserName + "\\Desktop\\output\\";
+            if (!Directory.Exists(outputFolder))
+                Directory.CreateDirectory(outputFolder);
+
+            string outputFile = outputFolder + "file " + index + " .txt"; //Later make this file names
+            if (File.Exists(outputFile))
+                File.Delete(outputFile);
+
+            File.WriteAllLines(outputFile, values);
         }
     }
 }

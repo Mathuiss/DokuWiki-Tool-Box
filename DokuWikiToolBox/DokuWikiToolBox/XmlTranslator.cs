@@ -8,6 +8,18 @@ namespace DokuWikiToolBox
 {
     class XmlTranslator
     {
+        public XmlNode[] TranslateNodes(List<XmlNode> nodeList)
+        {
+            XmlNode[] nodes = nodeList.ToArray();
 
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                if (nodes[i].Type == "Heading2")
+                {
+                    nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "=== " + nodes[i].Value + " ===");
+                }
+            }
+            return nodes;
+        }
     }
 }
