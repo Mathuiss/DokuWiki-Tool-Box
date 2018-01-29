@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.IO;
 using System.Collections.Generic;
 
@@ -30,50 +29,45 @@ namespace DokuWikiToolBox
                 //New node detected
                 if (xml[i].Contains("<w:pPr"))
                 {
-                    var node = new XmlNode();
-
                     //Get type H2
                     if (xml[i + 1].Contains("<w:pStyle"))
                     {
+                        var node = new XmlNode();
                         node.Type = GetType(xml[i + 1], "\"");
+                        node.Value = "";
 
                         //Fast forward to value
-                        while (!xml[i].Contains("<w:t"))
+                        while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
                         {
-                            try { i++; }
-                            catch (IndexOutOfRangeException iore) { MessageBox.Show(iore.ToString()); }
+                            i++;
                         }
 
                         if (xml[i].Contains("<w:t"))
                             node.Value = GetValue(xml[i], "<w:t");
-                    }
 
-                    nodeList.Add(node);
+                        nodeList.Add(node);
+                    }
                 }
                 else if (xml[i].Contains("<w:rPr"))
                 {
-                    var node = new XmlNode();
-
                     //Get type H2
                     if (xml[i + 1].Contains("<w:rFonts"))
                     {
+                        var node = new XmlNode();
                         node.Type = GetType(xml[i + 1], "\""); //" identifies a type string within xml
+                        node.Value = "";
 
                         //Fast forward to value
-                        try
+                        while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
                         {
-                            while (!xml[i].Contains("<w:t"))
-                            {
-                                i++;                       
-                            }
+                            i++;                       
                         }
-                        catch { break; }
 
                         if (xml[i].Contains("<w:t"))
                             node.Value = GetValue(xml[i], "<w:t");
-                    }
 
-                    nodeList.Add(node);
+                        nodeList.Add(node);
+                    }
                 }
             }
         }
@@ -122,11 +116,15 @@ namespace DokuWikiToolBox
         public void WriteNodes(XmlNode[] nodes, int index)
         {
             string[] values = new string[nodes.Length];
-
+            int numActualLines = 0;
             //Transfering the nodes vall
             for (int i = 0; i < values.Length; i++)
             {
                 values[i] = nodes[i].Value;
+                if (!values[i].Equals("")) //Appearantly values[2] is null??
+                {
+                    numActualLines++;
+                }
             }
 
             string outputFolder = "C:\\Users\\" + Environment.UserName + "\\Desktop\\output\\";
@@ -136,7 +134,7 @@ namespace DokuWikiToolBox
             string outputFile = outputFolder + "file " + index + " .txt"; //Later make this file names
             if (File.Exists(outputFile))
                 File.Delete(outputFile);
-
+            
             File.WriteAllLines(outputFile, values);
         }
     }
