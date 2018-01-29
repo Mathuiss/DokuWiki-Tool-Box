@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 
 namespace DokuWikiToolBox
@@ -34,7 +35,8 @@ namespace DokuWikiToolBox
                         //Fast forward to value
                         while (!xml[i].Contains("<w:t"))
                         {
-                            i++;
+                            try { i++; }
+                            catch (IndexOutOfRangeException iore) { MessageBox.Show(iore.ToString()); }
                         }
 
                         if (xml[i].Contains("<w:t"))
@@ -66,6 +68,7 @@ namespace DokuWikiToolBox
                 {
                     first = i;
                     hasReadValue = true;
+                    
                 }
                 else if (line[i] == '<' && hasReadValue)
                 {
@@ -75,10 +78,10 @@ namespace DokuWikiToolBox
             }
 
             if (first == 0 || last == 0)
-                throw new Exception();
-
-            input = input.Remove(0, first);
+                throw new Exception("Unable to detect node. Missing char '<' or '>'"); //Show Exception Message
+            
             input = input.Remove(last, input.Length - last); //Because it's a 0 based array
+            input = input.Remove(0, first + 1); //+1 To Delete the '>' as well
 
             return input;
         }
