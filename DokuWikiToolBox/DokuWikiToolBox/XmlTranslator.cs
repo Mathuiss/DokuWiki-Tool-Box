@@ -18,6 +18,11 @@ namespace DokuWikiToolBox
                 {
                     nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "=== " + nodes[i].Value + " ===");
                 }
+
+                if (nodes[i].Type.Contains("<bold>"))
+                {
+                    nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "**" + nodes[i].Value + "**");
+                }
             }
             return nodes;
         }

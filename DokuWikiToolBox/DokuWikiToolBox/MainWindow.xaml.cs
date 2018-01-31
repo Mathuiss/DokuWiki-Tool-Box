@@ -31,7 +31,7 @@ namespace DokuWikiToolBox
         private void Btn_pickTextFile_Click(object sender, RoutedEventArgs e)
         {
             var textFileSelector = new TextFileSelector();
-            fileObjects = textFileSelector.SelectTextFile();
+            fileObjects = textFileSelector.SelectTextFile(ref ProgressBar);
             textFileSelector = null;
         }
 
@@ -45,7 +45,7 @@ namespace DokuWikiToolBox
         {
             TextBlockConsole.Text = "This operation might take up to several minutes, depending on the size of the documents.";
             var docFileSelector = new DocFileSelector();
-            docObjects = docFileSelector.SelectDocFile();
+            docObjects = docFileSelector.SelectDocFile(ref ProgressBar);
             docFileSelector = null;
             TextBlockConsole.Text = "Operation complete";
         }
@@ -62,7 +62,7 @@ namespace DokuWikiToolBox
         private void Btn_wordToDokuwiki_Click(object sender, RoutedEventArgs e)
         {
             var converter = new XmlParser();
-            converter.WordToDokuwiki(docObjects);
+            converter.WordToDokuwiki(docObjects, ref ProgressBar);
             converter = null;
             Process.Start(@"C:\\Users\\" + Environment.UserName + "\\Desktop\\output");
         }

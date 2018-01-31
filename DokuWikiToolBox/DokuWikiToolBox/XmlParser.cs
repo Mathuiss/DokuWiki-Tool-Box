@@ -1,14 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace DokuWikiToolBox
 {
     public class XmlParser
     {
-        public void WordToDokuwiki(List<DocObject> docObjects)
+        public void WordToDokuwiki(List<DocObject> docObjects, ref ProgressBar pb)
         {
+            pb.Value = 0;
             int index = 1;
+
+            double valueIncrement = 100 / docObjects.Count;
             foreach (DocObject doc in docObjects)
             {
                 var nodeList = new List<XmlNode>();
@@ -16,6 +20,7 @@ namespace DokuWikiToolBox
                 var xmlTranslator = new XmlTranslator();
                 WriteNodes(xmlTranslator.TranslateNodes(nodeList), index);
                 index++;
+                pb.Value += valueIncrement;
             }
         }
 
@@ -32,9 +37,7 @@ namespace DokuWikiToolBox
                     //Get type H2
                     if (xml[i + 1].Contains("<w:pStyle"))
                     {
-                        var node = new XmlNode();
-                        node.Type = GetType(xml[i + 1], "\"");
-                        node.Value = "";
+                        var node = new XmlNode(GetType(xml[i + 1], "\""), "");
 
                         //Fast forward to value
                         while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
@@ -50,17 +53,31 @@ namespace DokuWikiToolBox
                 }
                 else if (xml[i].Contains("<w:rPr"))
                 {
-                    //Get type H2
-                    if (xml[i + 1].Contains("<w:rFonts"))
+                    //Get type normal text bold
+                    if (xml[i + 1].Contains("<w:rFonts") && xml[i + 2].Contains("<w:b"))
                     {
-                        var node = new XmlNode();
-                        node.Type = GetType(xml[i + 1], "\""); //" identifies a type string within xml
-                        node.Value = "";
+                        var node = new XmlNode(GetType(xml[i + 1], "\"") + "<bold>", "");
 
                         //Fast forward to value
                         while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
                         {
-                            i++;                       
+                            i++;
+                        }
+
+                        if (xml[i].Contains("<w:t"))
+                            node.Value = GetValue(xml[i], "<w:t");
+
+                        nodeList.Add(node);
+                    }
+                    //Get type normal text
+                    else if (xml[i + 1].Contains("<w:rFonts"))
+                    {
+                        var node = new XmlNode(GetType(xml[i + 1], "\""), "");
+
+                        //Fast forward to value
+                        while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
+                        {
+                            i++;
                         }
 
                         if (xml[i].Contains("<w:t"))
@@ -72,6 +89,7 @@ namespace DokuWikiToolBox
             }
         }
 
+        //This method searches for a node type and returns it as a string
         public string GetType(string input, string target)
         {
             int first = input.IndexOf(target) + 1;
@@ -81,6 +99,7 @@ namespace DokuWikiToolBox
             return input;
         }
 
+        //This method searches for a value in the line and returns that value
         public string GetValue(string input, string target)
         {
             char[] line = input.ToCharArray();
@@ -94,7 +113,6 @@ namespace DokuWikiToolBox
                 {
                     first = i;
                     hasReadValue = true;
-                    
                 }
                 else if (line[i] == '<' && hasReadValue)
                 {
