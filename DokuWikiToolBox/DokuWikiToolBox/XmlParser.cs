@@ -144,7 +144,7 @@ namespace DokuWikiToolBox
                     numActualLines++;
                 }
             }
-
+            
             string outputFolder = "C:\\Users\\" + Environment.UserName + "\\Desktop\\output\\";
             if (!Directory.Exists(outputFolder))
                 Directory.CreateDirectory(outputFolder);

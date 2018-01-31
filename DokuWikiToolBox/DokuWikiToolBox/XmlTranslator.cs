@@ -14,15 +14,19 @@ namespace DokuWikiToolBox
 
             for (int i = 0; i < nodes.Length; i++)
             {
-                if (nodes[i].Type == "Heading2")
+                try
                 {
-                    nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "=== " + nodes[i].Value + " ===");
-                }
+                    if (nodes[i].Type == "Heading2")
+                    {
+                        nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "=== " + nodes[i].Value + " ===");
+                    }
 
-                if (nodes[i].Type.Contains("<bold>"))
-                {
-                    nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "**" + nodes[i].Value + "**");
+                    if (nodes[i].Type.Contains("<bold>"))
+                    {
+                        nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "**" + nodes[i].Value + "**");
+                    }
                 }
+                catch {  } //Yet to be clear
             }
             return nodes;
         }
