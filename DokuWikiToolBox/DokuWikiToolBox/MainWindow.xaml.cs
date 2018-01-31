@@ -95,7 +95,7 @@ namespace DokuWikiToolBox
         private void Btn_fileNameFunction_Click(object sender, RoutedEventArgs e)
         {
             protocol = 4;
-            TextBlockConsole.Text = "Renames the .txr file to dokuwiki  standards and makes the file in doku wiki display the name of the H1. " +
+            TextBlockConsole.Text = "Renames the .txt file to dokuwiki  standards and makes the file in doku wiki display the name of the header. " +
                 "Please specify the number of lines that contain the header";
         }
 
@@ -108,7 +108,7 @@ namespace DokuWikiToolBox
         private void Btn_labelCreator_Click(object sender, RoutedEventArgs e)
         {
             protocol = 6;
-            TextBlockConsole.Text = "Finding chapters an paragraphs and creating Label. This needs the label plugin on the server.";
+            TextBlockConsole.Text = "Finding chapters an paragraphs and creating Label. This requires the label plugin on the server.";
         }
 
         private void Btn_purge_Click(object sender, RoutedEventArgs e)
