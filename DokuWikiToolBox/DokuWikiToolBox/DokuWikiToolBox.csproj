@@ -85,6 +85,7 @@
     <Compile Include="ReplaceEngine.cs" />
     <Compile Include="SplitEngine.cs" />
     <Compile Include="TextFileSelector.cs" />
+    <Compile Include="XmlTranslator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

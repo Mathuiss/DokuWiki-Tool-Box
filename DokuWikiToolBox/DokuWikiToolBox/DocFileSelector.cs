@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Windows.Controls;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -10,10 +11,11 @@ namespace DokuWikiToolBox
 {
     public class DocFileSelector
     {
-        public List<DocObject> SelectDocFile()
+        public List<DocObject> SelectDocFile(ref ProgressBar pb)
         {
+            pb.Value = 0;
             string outputDir = "C:\\Users\\" + Environment.UserName + "\\Desktop\\output\\";
-
+            
             var filesToDelete = new List<string>();
             var openFileDialog = new OpenFileDialog();
             var docObjects = new List<DocObject>();
@@ -29,6 +31,7 @@ namespace DokuWikiToolBox
             //Adding the files to the list
             if (openFileDialog.ShowDialog() == true)
             {
+                double valueIncrement = 100 / openFileDialog.FileNames.Length;
                 for (int i = 0; i < openFileDialog.FileNames.Length; i++)
                 {
                     //Creating the output directory
@@ -52,6 +55,8 @@ namespace DokuWikiToolBox
                     docObjects.Add(docObject);
 
                     DeleteTempFiles(filesToDelete);
+
+                    pb.Value += valueIncrement;
                 }
             }
             return docObjects;
