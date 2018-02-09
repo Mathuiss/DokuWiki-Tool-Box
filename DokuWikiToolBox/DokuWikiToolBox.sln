@@ -7,6 +7,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DokuWikiToolBox", "DokuWiki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestBox", "UnitTestBox\UnitTestBox.csproj", "{CE841AAB-3B52-4F75-94BE-109578889962}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DokuWikiToolBoxOnline", "DokuWikiToolBoxOnline\", "{36772F9A-4E5F-4CD7-B14F-220E4107D1C2}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_52793"
+		Debug.AspNetCompiler.PhysicalPath = "DokuWikiToolBoxOnline\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52793\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_52793"
+		Release.AspNetCompiler.PhysicalPath = "DokuWikiToolBoxOnline\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52793\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "52793"
+		SlnRelativePath = "DokuWikiToolBoxOnline\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +43,10 @@ Global
 		{CE841AAB-3B52-4F75-94BE-109578889962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE841AAB-3B52-4F75-94BE-109578889962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE841AAB-3B52-4F75-94BE-109578889962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36772F9A-4E5F-4CD7-B14F-220E4107D1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36772F9A-4E5F-4CD7-B14F-220E4107D1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36772F9A-4E5F-4CD7-B14F-220E4107D1C2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{36772F9A-4E5F-4CD7-B14F-220E4107D1C2}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
