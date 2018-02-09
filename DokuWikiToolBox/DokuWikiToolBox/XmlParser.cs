@@ -20,7 +20,7 @@ namespace DokuWikiToolBox
 
                 var xmlTranslator = new XmlTranslator();
                 WriteNodes(xmlTranslator.TranslateNodes(nodeList), index);
-
+                
                 index++;
                 pb.Value += valueIncrement;
             }
@@ -28,13 +28,13 @@ namespace DokuWikiToolBox
 
         public void GetNodes(DocObject doc, ref List<XmlNode> nodeList)
         {
-            
+
             string[] xml = doc.Lines.ToArray();
 
             for (int i = 0; i < xml.Length; i++)
             {
                 //New node detected
-                if ((xml[i].Contains("<w:rPr") ||xml[i].Contains("<w:pPr")) && !xml[i + 1].Contains("<w:rPr"))
+                if ((xml[i].Contains("<w:rPr") || xml[i].Contains("<w:pPr")) && !xml[i + 1].Contains("<w:rPr"))
                 {
                     //Create node with type
                     var node = new XmlNode(GetType(xml[i + 1], "\""), "");
@@ -48,7 +48,7 @@ namespace DokuWikiToolBox
                     //Check if the node should be on the same line as the next node
                     if (xml[i].Contains("<w:t") && xml[i].Contains("=\"preserve\""))
                         node.Type = GetType(xml[i], "\"");
-                    
+
                     //Add the value
                     node.Value = GetValue(xml[i], "<w:t");
 
@@ -60,11 +60,19 @@ namespace DokuWikiToolBox
         //This method searches for a node type and returns it as a string
         public string GetType(string input, string target)
         {
-            int first = input.IndexOf(target) + 1;
-            input = input.Remove(0, first);
-            int last = input.LastIndexOf(target);
-            input = input.Remove(last, input.Length - last); //Because it's a 0 based array
-            return input;
+            if (input.Contains("\""))
+            {
+                int first = input.IndexOf(target) + 1;
+                input = input.Remove(0, first);
+                int last = input.LastIndexOf(target);
+                input = input.Remove(last, input.Length - last); //Because it's a 0 based array
+                return input;
+
+            }
+            else
+            {
+                return "\n";
+            }
         }
 
         //This method searches for a value in the line and returns that value
@@ -92,9 +100,8 @@ namespace DokuWikiToolBox
             if (first == 0 || last == 0)
             {
                 last = input.Length;
-                throw new Exception("Unable to detect node. Missing char '<' or '>'");//Show Exception Message
             }
-            
+
             input = input.Remove(last, input.Length - last); //Because it's a 0 based array
             input = input.Remove(0, first + 1); //+1 To Delete the '>' as well
 
@@ -115,7 +122,7 @@ namespace DokuWikiToolBox
                     numActualLines++;
                 }
             }
-            
+
             string outputFolder = "C:\\Users\\" + Environment.UserName + "\\Desktop\\output\\";
             if (!Directory.Exists(outputFolder))
                 Directory.CreateDirectory(outputFolder);
@@ -123,7 +130,7 @@ namespace DokuWikiToolBox
             string outputFile = outputFolder + "file " + index + " .txt"; //Later make this file names
             if (File.Exists(outputFile))
                 File.Delete(outputFile);
-            
+
             File.WriteAllLines(outputFile, values);
         }
     }
