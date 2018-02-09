@@ -17,8 +17,10 @@ namespace DokuWikiToolBox
             {
                 var nodeList = new List<XmlNode>();
                 GetNodes(doc, ref nodeList);
+
                 var xmlTranslator = new XmlTranslator();
                 WriteNodes(xmlTranslator.TranslateNodes(nodeList), index);
+
                 index++;
                 pb.Value += valueIncrement;
             }
@@ -32,59 +34,25 @@ namespace DokuWikiToolBox
             for (int i = 0; i < xml.Length; i++)
             {
                 //New node detected
-                if (xml[i].Contains("<w:pPr"))
+                if ((xml[i].Contains("<w:rPr") ||xml[i].Contains("<w:pPr")) && !xml[i + 1].Contains("<w:rPr"))
                 {
-                    //Get type H2
-                    if (xml[i + 1].Contains("<w:pStyle"))
+                    //Create node with type
+                    var node = new XmlNode(GetType(xml[i + 1], "\""), "");
+
+                    //Fast forward to value
+                    while ((!xml[i].Contains("<w:t") && i < xml.Length - 1) || xml[i].Contains("<w:tab"))
                     {
-                        var node = new XmlNode(GetType(xml[i + 1], "\""), "");
-
-                        //Fast forward to value
-                        while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
-                        {
-                            i++;
-                        }
-
-                        if (xml[i].Contains("<w:t"))
-                            node.Value = GetValue(xml[i], "<w:t");
-
-                        nodeList.Add(node);
+                        i++;
                     }
-                }
-                else if (xml[i].Contains("<w:rPr"))
-                {
-                    //Get type normal text bold
-                    if (xml[i + 1].Contains("<w:rFonts") && xml[i + 2].Contains("<w:b"))
-                    {
-                        var node = new XmlNode(GetType(xml[i + 1], "\"") + "<bold>", "");
 
-                        //Fast forward to value
-                        while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
-                        {
-                            i++;
-                        }
+                    //Check if the node should be on the same line as the next node
+                    if (xml[i].Contains("<w:t") && xml[i].Contains("=\"preserve\""))
+                        node.Type = GetType(xml[i], "\"");
+                    
+                    //Add the value
+                    node.Value = GetValue(xml[i], "<w:t");
 
-                        if (xml[i].Contains("<w:t"))
-                            node.Value = GetValue(xml[i], "<w:t");
-
-                        nodeList.Add(node);
-                    }
-                    //Get type normal text
-                    else if (xml[i + 1].Contains("<w:rFonts"))
-                    {
-                        var node = new XmlNode(GetType(xml[i + 1], "\""), "");
-
-                        //Fast forward to value
-                        while (!xml[i].Contains("<w:t") && i < xml.Length - 1)
-                        {
-                            i++;
-                        }
-
-                        if (xml[i].Contains("<w:t"))
-                            node.Value = GetValue(xml[i], "<w:t");
-
-                        nodeList.Add(node);
-                    }
+                    nodeList.Add(node);
                 }
             }
         }
@@ -122,8 +90,10 @@ namespace DokuWikiToolBox
             }
 
             if (first == 0 || last == 0)
+            {
                 last = input.Length;
-                //throw new Exception("Unable to detect node. Missing char '<' or '>'"); //Show Exception Message
+                throw new Exception("Unable to detect node. Missing char '<' or '>'");//Show Exception Message
+            }
             
             input = input.Remove(last, input.Length - last); //Because it's a 0 based array
             input = input.Remove(0, first + 1); //+1 To Delete the '>' as well
@@ -135,6 +105,7 @@ namespace DokuWikiToolBox
         {
             string[] values = new string[nodes.Length];
             int numActualLines = 0;
+
             //Transfering the nodes vall
             for (int i = 0; i < values.Length; i++)
             {

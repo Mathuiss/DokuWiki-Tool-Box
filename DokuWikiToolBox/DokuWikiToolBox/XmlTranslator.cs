@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DokuWikiToolBox
 {
@@ -16,7 +12,7 @@ namespace DokuWikiToolBox
             {
                 try
                 {
-                    if (nodes[i].Type == "Heading2")
+                    if (nodes[i].Type.Contains("Heading2"))
                     {
                         nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "=== " + nodes[i].Value + " ===");
                     }
@@ -24,6 +20,12 @@ namespace DokuWikiToolBox
                     if (nodes[i].Type.Contains("<bold>"))
                     {
                         nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "**" + nodes[i].Value + "**");
+                    }
+
+                    if (nodes[i].Type.Contains("preserve") && i > 0)
+                    {
+                        nodes[i - 1].Value = nodes[i - 1].Value + nodes[i].Value;
+                        nodes[i].Value = "";
                     }
                 }
                 catch {  } //Yet to be clear
