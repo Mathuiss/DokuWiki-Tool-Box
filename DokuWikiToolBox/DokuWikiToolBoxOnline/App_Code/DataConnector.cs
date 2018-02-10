@@ -17,7 +17,7 @@ public class DataConnector
         connection = new SqlConnection(conString);
         connection.Open();
     }
-
+    
     public void Register(string userName, string email, string password)
     {
         string query = "insert into Users (id, name, email, password) values (@id, @name, @email, @password)";
@@ -39,8 +39,22 @@ public class DataConnector
         return (int)command.ExecuteScalar() + 1;
     }
 
-    public void Login()
+    public void Login(string email, string password, ref bool canLogIn)
     {
+        string query = "select password from Users where email = \'@email\'";
+        query = query.Replace("@email", email);
 
+        var command = new SqlCommand(query, connection);
+        string passwordToCompare = (string)command.ExecuteScalar();
+        connection.Close();
+
+        if (password.Equals(passwordToCompare))
+        {
+            canLogIn = true;
+        }
+        else
+        {
+            canLogIn = false;
+        }
     }
 }
