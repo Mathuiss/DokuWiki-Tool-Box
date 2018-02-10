@@ -12,12 +12,7 @@ namespace UnitTestBox
         public void Run()
         {
             //########### Code Here #############
-
-            var selector = new DocFileSelector();
-            var docObjects = selector.SelectDocFile();
-
-            var parser = new XmlParser();
-            parser.WordToDokuwiki(docObjects);
+            
 
             //###################################
             LoopMessageHandler();

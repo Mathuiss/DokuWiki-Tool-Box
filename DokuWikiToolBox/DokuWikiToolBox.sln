@@ -10,6 +10,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DokuWikiToolBoxOnline", "DokuWikiToolBoxOnline\", "{36772F9A-4E5F-4CD7-B14F-220E4107D1C2}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7"
+		ProjectReferences = ""
 		Debug.AspNetCompiler.VirtualPath = "/localhost_52793"
 		Debug.AspNetCompiler.PhysicalPath = "DokuWikiToolBoxOnline\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52793\"
