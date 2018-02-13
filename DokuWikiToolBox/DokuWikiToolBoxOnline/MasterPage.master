@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Doku Wiki Tool Box Online</title>
+    <link rel="stylesheet" href="style.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Default.aspx">Home</a></li>
+            <li><a href="Login.aspx">Login</a></li>
+            <li><a href="Downloads.aspx">Download</a></li>
+        </ul>
+    </nav>
+
+    <form id="dw_toolbox_online" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
