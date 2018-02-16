@@ -10,8 +10,6 @@ public class EncryptionEngine
 {
     public EncryptionEngine()
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DokuWikiToolBox
 {
-    struct PdfObject
+    public struct PdfObject
     {
         private string[] lines;
         private string path;

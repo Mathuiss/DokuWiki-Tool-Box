@@ -7,9 +7,7 @@
     <p>
         Step 1</p>
     <p>
-        <asp:Button ID="Btn_LoadTextFile" runat="server" Text="Load Text File" OnClick="Btn_LoadTextFile_Click" />
-        <asp:Button ID="Btn_LoadWordDocument" runat="server" Text="Load Word Document" OnClick="Btn_LoadWordDocument_Click" />
-        <asp:Button ID="Btn_LoadPdf" runat="server" Text="Load PDF" OnClick="Btn_LoadPdf_Click" />
+        <asp:FileUpload ID="FileUpload1" runat="server" Width="250px" />
     </p>
     Step 2<br />
     <br />
@@ -45,6 +43,10 @@ Replacement<br />
     <br />
 
 <asp:Button ID="Btn_Launch" runat="server" Text="Launch" OnClick="Btn_Launch_Click" />
+
+    <br />
+    <br />
+    <asp:Label ID="TextBlockConsole" runat="server" Text="Label"></asp:Label>
 
 </asp:Content>
 

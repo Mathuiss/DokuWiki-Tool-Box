@@ -1,6 +1,6 @@
 ﻿namespace DokuWikiToolBox
 {
-    public class FileObject
+    public struct FileObject
     {
         private string[] lines;
         private string path;
