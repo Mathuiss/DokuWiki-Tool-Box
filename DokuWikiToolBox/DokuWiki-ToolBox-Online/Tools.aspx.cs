@@ -16,7 +16,12 @@ public partial class Tools : System.Web.UI.Page
         docObjects = new List<DocObject>();
         pdfObjects = new List<PdfObject>();
     }
-    
+
+    protected void Btn_Submit_Click(object sender, EventArgs e)
+    {
+        //TOTO: Implement the submit button through the Web.Controls.FileUpload class
+    }
+
     protected void Btn_WordToDokuWiki_Click(object sender, EventArgs e)
     {
         var converter = new XmlParser();

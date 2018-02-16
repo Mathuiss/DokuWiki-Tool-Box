@@ -8,6 +8,7 @@
         Step 1</p>
     <p>
         <asp:FileUpload ID="Btn_FileUpload" runat="server" Width="250px"/>
+        <asp:Button ID="Btn_Submit" runat="server" OnClick="Btn_Submit_Click" Text="Submit" />
     </p>
     Step 2<br />
     <br />
