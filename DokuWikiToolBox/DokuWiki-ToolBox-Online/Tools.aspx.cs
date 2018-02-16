@@ -6,46 +6,22 @@ public partial class Tools : System.Web.UI.Page
     //Declaring the protocol to select and the List with fileObjects
     private int protocol;
 
-    List<FileObject> fileObjects = new List<FileObject>();
-    List<DocObject> docObjects = new List<DocObject>();
-    List<PdfObject> pdfObjects = new List<PdfObject>();
+    List<FileObject> fileObjects;
+    List<DocObject> docObjects;
+    List<PdfObject> pdfObjects;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        fileObjects = new List<FileObject>();
+        docObjects = new List<DocObject>();
+        pdfObjects = new List<PdfObject>();
     }
-
-    protected void Btn_LoadTextFile_Click(object sender, EventArgs e)
-    {
-        var textFileSelector = new TextFileSelector();
-        fileObjects = textFileSelector.SelectTextFile(ref ProgressBar);
-        textFileSelector = null;
-    }
-
-    protected void Btn_LoadWordDocument_Click(object sender, EventArgs e)
-    {
-        TextBlockConsole.Text = "This operation might take up to several minutes, depending on the size of the documents.";
-        var docFileSelector = new DocFileSelector();
-        docObjects = docFileSelector.SelectDocFile(ref ProgressBar);
-        docFileSelector = null;
-        TextBlockConsole.Text = "Operation complete";
-    }
-
-    protected void Btn_LoadPdf_Click(object sender, EventArgs e)
-    {
-        TextBlockConsole.Text = "This operation might take up to several minutes, depending on the size of the documents.";
-        var pdfFileSelector = new PdfFileSelector();
-        pdfObjects = pdfFileSelector.SelectPdfFile();
-        pdfFileSelector = null;
-        TextBlockConsole.Text = "Operation complete";
-    }
-
+    
     protected void Btn_WordToDokuWiki_Click(object sender, EventArgs e)
     {
         var converter = new XmlParser();
-        converter.WordToDokuwiki(docObjects, ref ProgressBar);
+        converter.WordToDokuwiki(docObjects);
         converter = null;
-        Process.Start(@"C:\\Users\\" + Environment.UserName + "\\Desktop\\output");
     }
 
     protected void Btn_ReplaceFunction_Click(object sender, EventArgs e)
@@ -99,7 +75,7 @@ protected void Btn_Purge_Click(object sender, EventArgs e)
         {
             case 1:
                 var replaceEngine = new ReplaceEngine();
-                replaceEngine.Run(fileObjects, tb_target.Text, tb_replacement.Text);
+                replaceEngine.Run(fileObjects, Tb_Target.Text, Tb_Replacement.Text);
                 replaceEngine = null;
                 TextBlockConsole.Text = "Process Complete!";
                 break;
@@ -120,18 +96,17 @@ protected void Btn_Purge_Click(object sender, EventArgs e)
                 int headerSize = 2; //2 Is a standard header size
                 try
                 {
-                    headerSize = Convert.ToInt32(tb_target.Text);
+                    headerSize = Convert.ToInt32(Tb_Target.Text);
                 }
-                catch (Exception ex) { MessageBox.Show("Please enter a number" + ex); }
+                catch (Exception) { TextBlockConsole.Text = "Please enter a number"; }
                 renameEngine.Run(fileObjects, headerSize);
                 renameEngine = null;
                 TextBlockConsole.Text = "Process Complete!";
                 break;
             case 5:
                 var splitEngine = new SplitEngine();
-                splitEngine.Run(fileObjects, tb_target.Text);
+                splitEngine.Run(fileObjects, Tb_Target.Text);
                 TextBlockConsole.Text = "Process Complete!";
-                Process.Start(@"C:\\Users\\" + Environment.UserName + "\\Desktop\\output");
                 break;
             case 6:
                 var labelEngine = new LabelEngine();
@@ -141,7 +116,7 @@ protected void Btn_Purge_Click(object sender, EventArgs e)
                 break;
             case 7:
                 var purgeEngine = new PurgeEngine();
-                purgeEngine.Run(fileObjects, tb_target.Text, tb_replacement.Text);
+                purgeEngine.Run(fileObjects, Tb_Target.Text, Tb_Replacement.Text);
                 purgeEngine = null;
                 TextBlockConsole.Text = "Process Complete!";
                 break;

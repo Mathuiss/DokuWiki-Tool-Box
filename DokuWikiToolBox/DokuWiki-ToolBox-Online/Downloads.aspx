@@ -5,5 +5,5 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <br />
     <br />
-    <a href="Download1.aspx">DokuWIki-ToolBox (32-bit)</a>
+    <a href="Download1.aspx">DokuWIki-ToolBox Windows(32-bit)</a>
 </asp:Content>

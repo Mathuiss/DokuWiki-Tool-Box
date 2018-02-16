@@ -7,7 +7,7 @@
     <p>
         Step 1</p>
     <p>
-        <asp:FileUpload ID="FileUpload1" runat="server" Width="250px" />
+        <asp:FileUpload ID="Btn_FileUpload" runat="server" Width="250px"/>
     </p>
     Step 2<br />
     <br />
@@ -46,7 +46,7 @@ Replacement<br />
 
     <br />
     <br />
-    <asp:Label ID="TextBlockConsole" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="TextBlockConsole" runat="server"></asp:Label>
 
 </asp:Content>
 
