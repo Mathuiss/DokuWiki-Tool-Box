@@ -1,6 +1,4 @@
-﻿using iTextSharp.text.pdf;
-
-namespace DokuWikiToolBox
+﻿namespace DokuWikiToolBox
 {
     struct PdfObject
     {

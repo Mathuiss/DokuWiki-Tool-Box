@@ -16,6 +16,8 @@
     </ul>
     <asp:Button ID="Btn_login" runat="server" Text="Log In" OnClick="Btn_login_Click" />
     <asp:Button ID="Btn_register" runat="server" Text="Register" OnClick="Btn_register_Click" />
+
     <asp:SqlDataSource ID="db_connector" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Users]"></asp:SqlDataSource>
+
 </asp:Content>
 

@@ -50,11 +50,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DokuWikiToolBox\DokuWikiToolBox.csproj">
-      <Project>{339d501a-fcb7-4eb6-a998-257fdf7ed38c}</Project>
-      <Name>DokuWikiToolBox</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
