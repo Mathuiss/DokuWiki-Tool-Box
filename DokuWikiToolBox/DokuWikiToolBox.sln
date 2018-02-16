@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DokuWikiToolBox", "DokuWikiToolBox\DokuWikiToolBox.csproj", "{339D501A-FCB7-4EB6-A998-257FDF7ED38C}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestBox", "UnitTestBox\
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DokuWikiToolBoxOnline", "DokuWikiToolBoxOnline\", "{36772F9A-4E5F-4CD7-B14F-220E4107D1C2}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.1"
 		ProjectReferences = ""
 		Debug.AspNetCompiler.VirtualPath = "/localhost_52793"
 		Debug.AspNetCompiler.PhysicalPath = "DokuWikiToolBoxOnline\"
