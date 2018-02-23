@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Windows;
+using Engine;
+using Model;
+using Utils.Selector;
+using Utils.Xml;
 
 namespace DokuWikiToolBox
 {
@@ -62,7 +65,7 @@ namespace DokuWikiToolBox
         private void Btn_wordToDokuwiki_Click(object sender, RoutedEventArgs e)
         {
             var converter = new XmlParser();
-            converter.WordToDokuwiki(docObjects, ref ProgressBar);
+            converter.WordToDokuwiki(docObjects);
             converter = null;
             Process.Start(@"C:\\Users\\" + Environment.UserName + "\\Desktop\\output");
         }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DokuWikiToolBox", "DokuWikiToolBox\DokuWikiToolBox.csproj", "{339D501A-FCB7-4EB6-A998-257FDF7ED38C}"
 EndProject
@@ -10,6 +10,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DokuWiki-ToolBox-Online", "DokuWiki-ToolBox-Online\", "{1E9FDDD8-A0D8-4071-B5E3-152EB46ACAB5}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.1"
+		ProjectReferences = "{6d5bcce2-2466-44b8-b00d-cf24943ed8a8}|Model.dll;{44c74977-1feb-4dbb-8563-868b1c342d3e}|Engine.dll;{bbd3d5d2-f9da-4daa-86a0-45e394899922}|Data.dll;{E9A677FB-BDD0-42DD-AE49-2C053939A3FC}|Utils.Integrity.dll;{dcae0ee3-435c-43e2-a7f0-3760d17cfa09}|Utils.Xml.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_57641"
 		Debug.AspNetCompiler.PhysicalPath = "DokuWiki-ToolBox-Online\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57641\"
@@ -29,6 +30,20 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DokuWiki-ToolBox-Online", "
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{6D5BCCE2-2466-44B8-B00D-CF24943ED8A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Integrity", "Utils.Integrity\Utils.Integrity.csproj", "{E9A677FB-BDD0-42DD-AE49-2C053939A3FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{44C74977-1FEB-4DBB-8563-868B1C342D3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Xml", "Utils.Xml\Utils.Xml.csproj", "{DCAE0EE3-435C-43E2-A7F0-3760D17CFA09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BBD3D5D2-F9DA-4DAA-86A0-45E394899922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Selector", "Utils.Selector\Utils.Selector.csproj", "{0159637B-60FD-4038-9E75-901E74F560A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Pdf", "Utils.Pdf\Utils.Pdf.csproj", "{219CC9BD-AFF7-4404-A7DC-C59F226FC86F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +62,34 @@ Global
 		{1E9FDDD8-A0D8-4071-B5E3-152EB46ACAB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E9FDDD8-A0D8-4071-B5E3-152EB46ACAB5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E9FDDD8-A0D8-4071-B5E3-152EB46ACAB5}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{6D5BCCE2-2466-44B8-B00D-CF24943ED8A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D5BCCE2-2466-44B8-B00D-CF24943ED8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D5BCCE2-2466-44B8-B00D-CF24943ED8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D5BCCE2-2466-44B8-B00D-CF24943ED8A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A677FB-BDD0-42DD-AE49-2C053939A3FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A677FB-BDD0-42DD-AE49-2C053939A3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A677FB-BDD0-42DD-AE49-2C053939A3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A677FB-BDD0-42DD-AE49-2C053939A3FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C74977-1FEB-4DBB-8563-868B1C342D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C74977-1FEB-4DBB-8563-868B1C342D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C74977-1FEB-4DBB-8563-868B1C342D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C74977-1FEB-4DBB-8563-868B1C342D3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCAE0EE3-435C-43E2-A7F0-3760D17CFA09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCAE0EE3-435C-43E2-A7F0-3760D17CFA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCAE0EE3-435C-43E2-A7F0-3760D17CFA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCAE0EE3-435C-43E2-A7F0-3760D17CFA09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBD3D5D2-F9DA-4DAA-86A0-45E394899922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBD3D5D2-F9DA-4DAA-86A0-45E394899922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBD3D5D2-F9DA-4DAA-86A0-45E394899922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBD3D5D2-F9DA-4DAA-86A0-45E394899922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0159637B-60FD-4038-9E75-901E74F560A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0159637B-60FD-4038-9E75-901E74F560A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0159637B-60FD-4038-9E75-901E74F560A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0159637B-60FD-4038-9E75-901E74F560A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219CC9BD-AFF7-4404-A7DC-C59F226FC86F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219CC9BD-AFF7-4404-A7DC-C59F226FC86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219CC9BD-AFF7-4404-A7DC-C59F226FC86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219CC9BD-AFF7-4404-A7DC-C59F226FC86F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

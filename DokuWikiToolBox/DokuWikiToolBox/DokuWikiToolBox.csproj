@@ -59,25 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Checker.cs" />
-    <Compile Include="XmlNode.cs" />
-    <Compile Include="XmlParser.cs" />
-    <Compile Include="DocFileSelector.cs" />
-    <Compile Include="DocObject.cs" />
-    <Compile Include="EncodingCleanEngine.cs" />
-    <Compile Include="FileObject.cs" />
-    <Compile Include="HyperLinkEngine.cs" />
-    <Compile Include="LabelEngine.cs" />
-    <Compile Include="PdfFileSelector.cs" />
-    <Compile Include="PdfObject.cs" />
-    <Compile Include="PdfExtractor.cs" />
-    <Compile Include="PurgeEngine.cs" />
-    <Compile Include="Reader.cs" />
-    <Compile Include="RenameEngine.cs" />
-    <Compile Include="ReplaceEngine.cs" />
-    <Compile Include="SplitEngine.cs" />
-    <Compile Include="TextFileSelector.cs" />
-    <Compile Include="XmlTranslator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,6 +100,35 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="dw_hWi_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\Engine.csproj">
+      <Project>{44c74977-1feb-4dbb-8563-868b1c342d3e}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{6d5bcce2-2466-44b8-b00d-cf24943ed8a8}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils.Integrity\Utils.Integrity.csproj">
+      <Project>{e9a677fb-bdd0-42dd-ae49-2c053939a3fc}</Project>
+      <Name>Utils.Integrity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils.Pdf\Utils.Pdf.csproj">
+      <Project>{219cc9bd-aff7-4404-a7dc-c59f226fc86f}</Project>
+      <Name>Utils.Pdf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils.Selector\Utils.Selector.csproj">
+      <Project>{0159637b-60fd-4038-9e75-901e74f560a6}</Project>
+      <Name>Utils.Selector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils.Xml\Utils.Xml.csproj">
+      <Project>{dcae0ee3-435c-43e2-a7f0-3760d17cfa09}</Project>
+      <Name>Utils.Xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
