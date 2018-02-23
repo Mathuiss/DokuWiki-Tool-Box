@@ -1,0 +1,32 @@
+﻿body {
+}
+
+#wrap {
+    width: 28%;
+    height: 108px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+}
+
+li input{
+    width: 150px;
+}
+
+.left {
+    width: 50%;
+    float: left;
+    height: 100%;
+    margin: 0%;
+}
+
+.right {
+    width: 50%;
+    float: right;
+    height: 100%;
+    margin: 0%;
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Model;
 using Engine;
 using Utils.Xml;
+using Utils.Selector.Web;
 
 public partial class Tools : System.Web.UI.Page
 {
@@ -22,7 +23,14 @@ public partial class Tools : System.Web.UI.Page
 
     protected void Btn_Submit_Click(object sender, EventArgs e)
     {
-        //TOTO: Implement the submit button through the Web.Controls.FileUpload class
+        var selector = new Selector();
+        string location = Server.MapPath("") + "\\Output\\file.txt";
+
+        if (Btn_FileUpload.HasFile && Btn_FileUpload.FileName.EndsWith(".txt"))
+        {
+            Btn_FileUpload.SaveAs(location);
+            selector.GetFiles(ref fileObjects, location);
+        }
     }
 
     protected void Btn_WordToDokuWiki_Click(object sender, EventArgs e)

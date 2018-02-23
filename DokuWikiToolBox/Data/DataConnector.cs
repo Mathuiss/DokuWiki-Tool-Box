@@ -27,7 +27,7 @@ namespace Data
 
         public int GetNewId()
         {
-            string query = "select count(id) from users";
+            string query = "select max(id) from users";
 
             var command = new SqlCommand(query, connection);
             return (int)command.ExecuteScalar() + 1;
