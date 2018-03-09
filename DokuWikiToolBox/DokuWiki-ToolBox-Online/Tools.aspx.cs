@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using Model;
 using Engine;
+using Utils.Integrity;
 using Utils.Xml;
 using Utils.Selector.Web;
+using Data;
 
 public partial class Tools : System.Web.UI.Page
 {
+
     //Declaring the protocol to select and the List with fileObjects
     private int protocol;
 
@@ -23,13 +26,11 @@ public partial class Tools : System.Web.UI.Page
 
     protected void Btn_Submit_Click(object sender, EventArgs e)
     {
-        var selector = new Selector();
         string location = Server.MapPath("") + "\\Output\\file.txt";
 
         if (Btn_FileUpload.HasFile && Btn_FileUpload.FileName.EndsWith(".txt"))
         {
             Btn_FileUpload.SaveAs(location);
-            selector.GetFiles(ref fileObjects, location);
         }
     }
 
@@ -42,51 +43,57 @@ public partial class Tools : System.Web.UI.Page
 
     protected void Btn_ReplaceFunction_Click(object sender, EventArgs e)
     {
-        protocol = 1;
+        DataUtils.SetProtocol(1);
         TextBlockConsole.Text = "Replace target with replacement.";
     }
 
     protected void Btn_HyperLinkCreator_Click(object sender, EventArgs e)
     {
-        protocol = 2;
+        DataUtils.SetProtocol(2);
         TextBlockConsole.Text = "Find links and creating hyper links.";
     }
 
     protected void Btn_EncodingCleanup_Click(object sender, EventArgs e)
     {
-        protocol = 3;
+        DataUtils.SetProtocol(3);
         TextBlockConsole.Text = "Change the encoding to UTF-8.";
     }
 
 
     protected void Btn_FileNameCorrection_Click(object sender, EventArgs e)
     {
-        protocol = 4;
+        DataUtils.SetProtocol(4);
         TextBlockConsole.Text = "Renames the .txt file to dokuwiki  standards and makes the file in doku wiki display the name of the header. " +
         "Please specify the number of lines that contain the header";
     }
 
     protected void Btn_ChapterSplitter_Click(object sender, EventArgs e)
     {
-        protocol = 5;
+        DataUtils.SetProtocol(5);
         TextBlockConsole.Text = "Split all chapters and paragraphs into a tree structure.";
     }
 
     protected void Btn_LabelCreator_Click(object sender, EventArgs e)
     {
-        protocol = 6;
+        DataUtils.SetProtocol(6);
         TextBlockConsole.Text = "Finding chapters an paragraphs and creating Label. This requires the label plugin on the server.";
     }
 
 
-protected void Btn_Purge_Click(object sender, EventArgs e)
+    protected void Btn_Purge_Click(object sender, EventArgs e)
     {
-        protocol = 7;
+        DataUtils.SetProtocol(7);
         TextBlockConsole.Text = "Replaces everything with the replacement except for the target. Leave replacement empty if you want to purge the text.";
     }
 
     protected void Btn_Launch_Click(object sender, EventArgs e)
     {
+        protocol = DataUtils.GetProtocol();
+
+        var selector = new Selector();
+        string location = Server.MapPath("") + "\\Output\\file.txt";
+        selector.GetFiles(ref fileObjects, location);
+
         switch (protocol)
         {
             case 1:
@@ -140,5 +147,10 @@ protected void Btn_Purge_Click(object sender, EventArgs e)
                 TextBlockConsole.Text = "Please select an option.";
                 break;
         }
+
+        Response.Redirect("UploadedItem.aspx");
+
+        var cleaner = new Cleaner();
+        cleaner.CleanFiles();
     }
 }

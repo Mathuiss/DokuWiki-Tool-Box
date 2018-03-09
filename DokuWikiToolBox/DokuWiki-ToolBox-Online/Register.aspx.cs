@@ -12,7 +12,7 @@ public partial class Register : System.Web.UI.Page
     {
         if (Tb_password.Text == Tb_password2.Text && Tb_password != null)
         {
-            var dataCon = new DataConnector(db_connector.ConnectionString);
+            var dataCon = new LoginConnector();
             dataCon.Register(Tb_name.Text, Tb_email.Text, Tb_password.Text);
             Response.Redirect("RegistrationSuccess.aspx");
         }

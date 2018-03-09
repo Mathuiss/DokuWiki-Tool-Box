@@ -11,7 +11,7 @@ public partial class misc_Login : System.Web.UI.Page
     protected void Btn_login_Click(object sender, EventArgs e)
     {
         bool canLogIn = false;
-        var connector = new DataConnector(db_connector.ConnectionString);
+        var connector = new LoginConnector();
         connector.Login(Tb_email.Text, Tb_password.Text, ref canLogIn);
 
         if (canLogIn)
