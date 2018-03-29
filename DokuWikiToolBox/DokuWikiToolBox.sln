@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Pdf", "Utils.Pdf\Util
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Selector.Web", "Utils.Selector.Web\Utils.Selector.Web.csproj", "{8B48A632-B510-4A58-862F-187C62BAEF02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlXmlTest", "SqlXmlTest\SqlXmlTest.csproj", "{1D94E88E-6D18-412D-BCD6-CEAB1CA075F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{8B48A632-B510-4A58-862F-187C62BAEF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B48A632-B510-4A58-862F-187C62BAEF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B48A632-B510-4A58-862F-187C62BAEF02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D94E88E-6D18-412D-BCD6-CEAB1CA075F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D94E88E-6D18-412D-BCD6-CEAB1CA075F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D94E88E-6D18-412D-BCD6-CEAB1CA075F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D94E88E-6D18-412D-BCD6-CEAB1CA075F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

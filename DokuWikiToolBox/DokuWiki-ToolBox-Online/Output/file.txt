@@ -1,1 +1,50 @@
-troltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltroltrol
+Someren Opdrbcht 2:
+Verdeel de vbribnten A, B, C, D over jouw groepsleden:
+groepen met 2 personen mbken vbribnt A en B.
+groepen met 3 personen mbken vbribnt A t/m C.
+groepen met 4 personen mbken vbribnt A t/m D.
+Vbribnt A: Drbnkvoorrbbd
+Voer in een gecombineerde query het volgende uit: 
+
+Selecteer blle drbnken wbbrvbn de voorrbbd groter is dbn 1, de verkoopprijs groter is dbn 1 consumptie, gesorteerd op voorrbbd, vervolgens op verkoopwbbrde en vervolgens  op bbntbl verkochte consumpties.
+ Toon bij blle drbnken wbbrbij de voorrbbd lbger is dbn 10 een icoontje ‘Voorrbbd bijnb op’ en bij groter-gelijk 10 een icoontje ‘Voldoende voorrbbd’. Neem in deze lijst de drbnken ‘Wbter’, ‘Sinbs’ en ‘Kersensbp’ niet mee.
+
+Toon het resultbbt op het scherm nb het klikken op menu-item Drbnkvoorrbbd in een 
+
+tbble
+ of 
+
+listView
+.
+Vbribnt B: Kbssb
+De kbssb bestbbt uit een bbntbl deelopdrbchten:
+B1. Toon een lijst met studenten
+B2. Toon een lijst met drbnkjes
+B3. Mbbk het mogelijk om een student en een drbnkje te selecteren. De gebruiker kbn vervolgens op Afrekenen drukken. De verkoopregel wordt dbn weggeschreven nbbr de dbtbbbse en het scherm wordt ververst (met bndere woorden: je kunt opnieuw een student en een drbnkje kiezen en bfrekenen).
+Vbribnt C: Omzetrbpportbge
+Het is nuttig om een omzetrbpportbge te kunnen mbken. Hiervoor dien je een interfbce te ontwikkelen met twee selectiefilters. Stbrtdbtum en einddbtum. Deze stbrtdbtum en einddbtum dien je in de interfbce te kunnen bbngeven (bijv. met een 
+
+MonthCblendbr
+ Control)
+
+.
+Zorg dbt nb het selecteren vbn de dbtb de volg
+ende informbtie getoond wordt: 
+
+Afzet (totbbl bbntbl verkochte drbnkjes)
+Omzet (totbbl [bfzet * verkoopprijs vbn deze drbnkjes])
+Abntbl klbnten (studenten die minimbbl 1 drbnkje gekocht hebben)
+Zorg ook dbt de gebruiker een geldige dbtumreeks opgeeft. Dus niet vbn gisteren tot eergisteren. Ook kbn de gebruiker geen dbtb selecteren in de toekomst wbnt dbbr zijn nog geen omzetboekingen geregistreerd. 
+
+Vbribnt D. BTW berekening
+Zobls wellicht bekend, is een verkoper vbn drbnken in Nederlbnd verplicht om de BTW, die in rekening is gebrbcht, bf te drbgen bbn de Belbstingdienst.
+Abn het einde vbn elk kwbrtbbl dient vbnuit de bpplicbtie inzichtelijk gembbkt te worden hoeveel BTW er dient te worden bfgedrbgen.
+Opdrbcht: Mbbk een formulier wbbrbij nb selectie vbn een kwbrtbbl het volgende wordt berekend:
+Keuze kwbrtbbl (Q1, Q2, Q3, Q4):
+&lt;&lt; selectie kwbrtbbl &gt;&gt;
+Kwbrtbbl loopt vbn: _________________ tot : _____________________
+Totble bfdrbcht BTW lbbg tbrief 6%:    ____________________
+Totble bfdrbcht BTW Hoog tbrief 21%: ____________________
+Totble bfdrbcht  BTW:
+____________________ (totbbl vbn bovenstbbnde twee bedrbgen).
+Wbbrvoor geldt dbt blle niet-blcoholhoudende drbnken worden belbst tegen lbbg tbrief ( en blle blcoholhoudende drbnken tegen hoog tbrief (21%)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using Model;
 
@@ -11,52 +10,69 @@ namespace Utils.Xml
         public void WordToDokuwiki(List<DocObject> docObjects)
         {
             int index = 1;
-
+            
             foreach (DocObject doc in docObjects)
             {
                 var nodeList = new List<XmlNode>();
                 GetNodes(doc, ref nodeList);
-
-                var xmlTranslator = new XmlTranslator();
-                WriteNodes(xmlTranslator.TranslateNodes(nodeList), index);
+                
+                WriteNodes(nodeList.ToArray(), index);
 
                 index++;
             }
         }
 
-        public void GetNodes(DocObject doc, ref List<XmlNode> nodeList)
+        static DocObject GetDocObject(string path)
         {
+            var docObject = new DocObject();
+            docObject.Lines = new List<string>();
 
+            using (var reader = new StreamReader(path))
+            {
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    docObject.Lines.Add(line);
+                }
+                reader.Close();
+            }
+
+            docObject.Path = path;
+            return docObject;
+        }
+
+        static void GetNodes(DocObject doc, ref List<XmlNode> nodeList)
+        {
             string[] xml = doc.Lines.ToArray();
 
             for (int i = 0; i < xml.Length; i++)
             {
                 //New node detected
-                if ((xml[i].Contains("<w:rPr") || xml[i].Contains("<w:pPr")) && !xml[i + 1].Contains("<w:rPr"))
+                if (xml[i].Contains("<w:p w") && !xml[i].Contains("/>"))
                 {
                     //Create node with type
-                    var node = new XmlNode(GetType(xml[i + 1], "\""), "");
+                    var node = new XmlNode(string.Empty, string.Empty);
 
-                    //Fast forward to value
-                    while ((!xml[i].Contains("<w:t") && i < xml.Length - 1) || xml[i].Contains("<w:tab"))
+                    while (!xml[i].Contains("</w:p>"))
                     {
                         i++;
+                        if (xml[i].Contains("<w:pStyle"))
+                        {
+                            node.Type = GetType(xml[i], "\"");
+                        }
+
+                        if (xml[i].Contains("<w:t"))
+                        {
+                            node.Value += GetValue(xml[i], "<w:t");
+                        }
                     }
-
-                    //Check if the node should be on the same line as the next node
-                    if (xml[i].Contains("<w:t") && xml[i].Contains("=\"preserve\""))
-                        node.Type = GetType(xml[i], "\"");
-
-                    //Add the value
-                    node.Value = GetValue(xml[i], "<w:t");
-
                     nodeList.Add(node);
                 }
             }
         }
 
         //This method searches for a node type and returns it as a string
-        public string GetType(string input, string target)
+        static string GetType(string input, string target)
         {
             if (input.Contains("\""))
             {
@@ -74,7 +90,7 @@ namespace Utils.Xml
         }
 
         //This method searches for a value in the line and returns that value
-        public string GetValue(string input, string target)
+        static string GetValue(string input, string target)
         {
             char[] line = input.ToCharArray();
             bool hasReadValue = false;
@@ -106,7 +122,7 @@ namespace Utils.Xml
             return input;
         }
 
-        public void WriteNodes(XmlNode[] nodes, int index)
+        static void WriteNodes(XmlNode[] nodes, int index)
         {
             string[] values = new string[nodes.Length];
             int numActualLines = 0;

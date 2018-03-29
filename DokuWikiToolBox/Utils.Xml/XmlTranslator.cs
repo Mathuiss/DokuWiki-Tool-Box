@@ -15,7 +15,7 @@ namespace Utils.Xml
                 {
                     if (nodes[i].Type.Contains("preserve") && i > 0)
                     {
-                        nodes[i - 1].Value = nodes[i - 1].Value + nodes[i].Value;
+                        nodes[i - 1].Value += "\n" + nodes[i].Value;
                         nodes[i].Value = "";
                     }
                     else if (nodes[i].Type.Contains("<bold>"))
@@ -25,6 +25,14 @@ namespace Utils.Xml
                     else if (nodes[i].Type.Contains("Heading2"))
                     {
                         nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "=== " + nodes[i].Value + " ===");
+                    }
+                    else if (nodes[i].Type.Contains("Kop2"))
+                    {
+                        nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "=== " + nodes[i].Value + " ===");
+                    }
+                    else if (nodes[i].Type.Contains("Kop1"))
+                    {
+                        nodes[i].Value = nodes[i].Value.Replace(nodes[i].Value, "===== " + nodes[i].Value + " =====");
                     }
                 }
                 catch { } //Yet to be clear
